@@ -1,10 +1,19 @@
+import GithubSigninButton from "@/app/components/GithubSigninButton";
+import GoogleSigninButton from "@/app/components/GoogleSigninButton";
+import { authOptions } from "@/app/utils/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GithubIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { getServerSession } from "next-auth";
 
-const Login = () => {
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+const Login = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    return redirect("/home");
+  }
   return (
     <div
       className="
@@ -46,18 +55,8 @@ const Login = () => {
       </div>
 
       <div className="w-full flex justify-center items-center gap-x-3 mt-6">
-        <Button variant={"outline"} size="icon">
-          <GithubIcon className="w-4 h-4" />
-        </Button>
-        <Button variant={"outline"} size="icon">
-          <Image
-            width={10}
-            height={10}
-            src="/google.svg"
-            alt="google"
-            className="w-6 h-6"
-          />
-        </Button>
+        <GithubSigninButton />
+        <GoogleSigninButton />
       </div>
     </div>
   );
