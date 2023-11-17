@@ -28,7 +28,11 @@ const Login = async () => {
         
       "
     >
-      <form className="w-full flex justify-center items-center flex-col">
+      <form
+        method="post"
+        action="/api/auth/signin"
+        className="w-full flex justify-center items-center flex-col"
+      >
         <h1 className="text-3xl font-semibold text-white">Log in</h1>
         <div className="mt-5 space-y-4">
           <Input
