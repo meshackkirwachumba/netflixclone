@@ -13,7 +13,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <Navbar />
-      <main>{children}</main>
+      <main className="w-full max-w-7xl mx-auto px-6 lg:px-8">{children}</main>
     </div>
   );
 }

@@ -30,10 +30,11 @@ function Navbar() {
          px-5
          py-5
          sm:px-6
-         sm:py-8
+         lg:px-8
          flex
          items-center
          justify-between
+         
      "
     >
       <div className="flex items-center">
