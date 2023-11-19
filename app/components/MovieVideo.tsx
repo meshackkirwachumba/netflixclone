@@ -1,6 +1,7 @@
 import React from "react";
 import prisma from "../utils/db";
 import { Button } from "@/components/ui/button";
+import Moviebuttons from "./Moviebuttons";
 
 export async function getData() {
   const data = await prisma.movie.findFirst({
@@ -13,6 +14,7 @@ export async function getData() {
       duration: true,
       id: true,
       age: true,
+      youtubeString: true,
     },
   });
 
@@ -57,8 +59,16 @@ async function MovieVideo() {
         </h1>
         <p className="text-white mt-5 text-lg line-clamp-3">{data?.overview}</p>
         <div className="mt-4 flex gap-x-3">
-          <Button>See More</Button>
-          <Button>Learn More</Button>
+          <Moviebuttons
+            id={data?.id as number}
+            title={data?.title as string}
+            overview={data?.overview as string}
+            duration={data?.duration as number}
+            age={data?.age as number}
+            release={data?.release as number}
+            youtubeUrl={data?.youtubeString as string}
+            key={data?.id}
+          />
         </div>
       </div>
     </div>
